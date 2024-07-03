@@ -1,0 +1,73 @@
+<%- include('./partials/head') %>
+
+<div class="full--detail">
+    <a id="goback" href="/"> ☇ <span>Terug naar home</span> </a>
+    <section class="detail--text-image">
+        <picture>
+            <source srcset="https://fdnd-agency.directus.app/assets/<%= items.afbeelding %>?&format=webp" type="image/webp">
+            <img loading="lazy" src="https://fdnd-agency.directus.app/assets/<%= items.afbeelding %>" alt="">
+        </picture>
+        <article>
+            <h1> <%= items.title %></h1>    
+            <ul class="text-image--category">
+                <li><%= items.language %></li>
+                <li><%= items.characteristics %></li>
+                <li><%= items.auteur %></li>
+            </ul>
+            <p> <%- items.description %> </p>
+            <div>
+                <a class="link link-primary">Item reserveren</a>
+                
+                <form action="/detail/<%= items.id %>" method="post" id="myForm" class="save">
+                    <input type="hidden" name="savedItem" value="<%= items.id %>">
+                    <button id="submitButton" class="add link link-secondary" type="submit"> Toevoegen aan mijn lijst <i class='bx bxs-bookmark'></i></button>
+                </form>
+            </div>
+            <ul class="text-image--details">
+                <li><%= items.genre %></li>
+                <li><%= items.publisher %></li>
+                <li><%= items.ISBN %></li>
+                <li><%= items.pica_number %></li>
+                <li><%= items.editie %></li>
+                <li><%= items.datetime %></li>
+                <li><%= items.price %></li>
+                <li><%= items.location %></li>
+            </ul>
+        </article>
+    </section>
+
+    <script>
+        const currentUrl = window.location.href;
+        const button = document.querySelector(".add");
+        const notification = document.querySelector('.sidebar li:nth-child(2) a');
+        const notificationIcon = document.querySelector('.sidebar li:nth-child(2) a i');
+        let lijstForm = document.querySelector('.save')
+
+        console.log(lijstForm)
+
+        lijstForm.addEventListener('submit', function(event) {
+        let savedItem = new FormData(this)
+
+
+        savedItem.append('enhanced', true)
+        console.log(this.action)
+    
+
+        fetch(this.action, {
+        method: this.method,
+        
+        body: new URLSearchParams(savedItem)
+        }).then()
+    // Haal de URL op van de huidige pagina
+    // Controleer of de URL het "added=true" query parameter bevat
+        button.textContent = "Toegevoegd aan lijst ⇲";
+        button.classList.add("add-class-button");
+    
+        // SVG-icoon aanpassen
+        notification.classList.add("notification")
+        notificationIcon.classList.add("notification")
+    
+    event.preventDefault()
+})
+    </script>
+    <%- include('./partials/foot') %>

@@ -1,0 +1,75 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<ul class="family-list">
+    <div class="title">
+        <h1>User Overview</h1>
+        <a href="/">Terug naar <span>Home</span></a>
+    </div>
+    <% data.forEach(user => { %>
+        <%
+            const today = new Date();
+            const endOfWeek = new Date();
+            endOfWeek.setDate(today.getDate() + (7 - today.getDay()));
+
+            let teLaat = 0;
+            let weekTeLaat = 0;
+
+            if (user.data.linked_item && user.data.linked_item.length > 0) {
+                user.data.linked_item.forEach(item => {
+                    const itemDate = new Date(item.datetime);
+                    if (itemDate < today) {
+                        teLaat++;
+                    } else if (itemDate <= endOfWeek) {
+                        weekTeLaat++;
+                    }
+                });
+            }
+        %>
+        <li onclick="grow(event)">
+            <article>
+                <h2><%= user.data.name %></h2>
+                <picture>
+                    <source srcset="https://fdnd-agency.directus.app/assets/<%= user.data.avatar %>?format=avif" media="(max-width: 160px)" type="image/avif">
+                    <source srcset="https://fdnd-agency.directus.app/assets/<%= user.data.avatar %>?format=webp" type="image/webp">
+                    <img src="https://fdnd-agency.directus.app/assets/<%= user.data.avatar %>" loading="lazy"/>
+                </picture>
+                <% if (user.data.linked_item && user.data.linked_item.length > 0) { %>
+                    <p><%= user.data.linked_item.length %> geleende items</p>
+                    <p><%= teLaat %> items al te laat terug, <%= weekTeLaat %> items deze week terug</p>
+                <% } else { %>
+                    <p>Geen geleende items</p>
+                <% } %>
+            </article>
+            <ul class="hidden">
+                <a href="/user-overview/<%= user.data.id %>">Geleende items</a>
+                <a href="/personal-page/:<%= user.data.id %>">Persoonlijke pagina</a>
+
+                <%
+                if (user.data.linked_item && user.data.linked_item.length > 0) {
+                    const sortedItems = user.data.linked_item.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+
+                sortedItems.forEach(item => {
+                    const itemDate = new Date(item.datetime);
+                    const isBeforetoday = itemDate < today;
+                    const classList = isBeforetoday ? 'danger' : '';
+                %>
+                <li class="<%= classList %>" id="item-list">
+                    <p><%= item.title %></p>
+                    <p><%= item.auteur %></p>
+                    <p><%= itemDate.toLocaleString('nl-NL', { month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' }) %><p>
+                </li>
+                <%
+                });
+                } else {
+                %>
+                    <li>
+                        <p><%= user.data.name %> leent momenteel geen items!</p>
+                    </li>
+                <% } %>
+            </ul>
+        </li>
+    <% }); %>
+</ul>
+
+<%- include('partials/foot') %>

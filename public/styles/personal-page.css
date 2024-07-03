@@ -1,0 +1,240 @@
+.banner {
+    padding-top: 2rem;
+    /* min-height: 190px; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.hamburger-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: none;
+    width: 5em;
+    height: 5em;
+    border-radius: 20%;
+    cursor: pointer;
+    margin-bottom: 1.5em;
+    margin-left: 1.5em;
+    box-shadow: 3px 6px 10px dimgray;
+}
+
+.hamburger-menu:hover {
+    scale: 1.2;
+    transition: 0.1s ease-out;
+}
+
+.hamburger-image {
+    width: 3em;
+    height: 3em;
+    fill: var(--primary-color);
+}
+
+.oba-logo {
+    margin-right: 1em;
+    margin-bottom: 0.5em;
+}
+
+
+body:has(.content-wrapper) {
+    display: flex;
+    overflow-x: hidden;
+    background-color: #ff0000;
+}
+
+main:has(.content-wrapper) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 7em;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    background-color: var(--body-color);
+    position: absolute;
+    width: 100vw;
+    top: 8%;
+    transition: var(--tran-05);
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+}
+
+.content-wrapper-active {
+    display: block;
+}
+
+.profile-picture {
+    position: absolute;
+    bottom: 100%;
+    top: -5rem;
+    border-radius: 100%;
+}
+
+h1::first-line {
+    font-weight: bold;
+}
+
+.details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1em;
+
+}
+
+.details-buttons {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/*hidden details*/
+
+.details-item-container {
+    display: grid;
+    place-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: minmax(200px, auto); /* Vaste hoogte van 200px voor alle rijen */
+    grid-gap: 1em; /* Optioneel: voeg ruimte toe tussen de kolommen */
+}
+
+.details-close-buttons {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 1em 0;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.for-you-details {
+    display: none;
+}
+
+.for-you-details-active {
+    display: block;
+
+}
+
+.favorites-details {
+    display: none;
+}
+
+.favorites-details-active {
+    display: block;
+}
+
+.borrowed-books-details {
+    display: none;
+}
+
+.borrowed-books-details-active {
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: auto;
+    scroll-snap-type: x mandatory;
+    margin-bottom: 3em;
+    width: 100%
+}
+
+.carousel-items {
+    list-style: none;
+    margin: 1em;
+    scroll-snap-align: center;
+}
+
+.bookCarouselImg {
+    border-radius: var(--radius-small);
+    cursor: pointer;
+}
+
+.bookCarouselImg:hover {
+    scale: 1.1;
+    transition: 0.1s ease-out;
+}
+
+
+::-webkit-scrollbar {
+    height: 0.5em;
+    width: 0.3em;
+    background: #B6B6B6;
+    border-radius: var(--radius-small);
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    background: #FF0000FF;
+    border-radius: var(--radius-small);
+    width: 5em;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FF0000FF;
+    width: 2em;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-button:end {
+    width: 0.5em;
+}
+
+::-webkit-scrollbar-button:start {
+    width: 0.5em;
+}
+
+::-webkit-scrollbar-button {
+    height: 1em;
+}
+
+/*media queries*/
+
+@media (max-width: 2000px) {
+    /* Plaats hier je CSS regels */
+    .content-wrapper {
+        width: 85vw;
+    }
+}
+
+@media (max-width: 1000px) {
+    /* Plaats hier je CSS regels */
+    .content-wrapper {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Plaats hier je CSS regels */
+    .content-wrapper {
+        width: 70vw;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    .details-buttons {
+        font-size: 1.2em;
+    }
+}

@@ -1,0 +1,101 @@
+@font-face {
+  font-family: AvenirRoman;
+  src: url(../fonts/Avenir-roman.ttf);
+}
+
+@font-face {
+  font-family: AvenirMedium;
+  src: url(../fonts/Avenir-medium.ttf);
+}
+
+@font-face {
+  font-family: AvenirBlack;
+  src: url(../fonts/Avenir\ -black.ttf);
+}
+
+:root{
+      /* ===== Colors ===== */
+      --body-color: #e4e9f7;
+      --sidebar-color: #fff;
+      --primary-color: #ff0000;
+      --primary-toggle: #ff0000;
+      --primary-color-light: #f6f5ff;
+      --toggle-color: #ddd;
+      --text-color: #707070;
+    
+      /* ====== Transition ====== */
+      --tran-03: all 0.2s ease;
+      --tran-03: all 0.3s ease;
+      --tran-04: all 0.3s ease;
+      --tran-05: all 0.5s ease-in-out;
+      /* Spacing */
+   --none: 0px;
+   --extra-small:  4px;
+   --small: 8px;
+   --medium: 16px;
+   --large: 32px;
+   --extra-large: 64px;
+   --extra-extra-large: 128px;
+   --buttons:  8px 16px;
+ 
+   /* Borders */
+   --button: 4px;
+   --radius-small: 4px;
+   --radius-medium: 8px;
+   --radius-large: 12px;
+   --radius-extra-large: 16px;
+ 
+   /* default font */
+   font-family: Arial, Helvetica, sans-serif;  
+}
+
+body.dark {
+  --body-color: #18191a;
+  --sidebar-color: #242526;
+  --primary-color: #ccc;
+  --primary-toggle: #3a3b3c;
+  --primary-color-light: #3a3b3c;
+  --toggle-color: #fff;
+  --text-color: #ccc;
+}
+
+::selection {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-family: AvenirMedium;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+}
+
+span {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+h1 {
+    color: var(--text-color);
+}
+
+h2 {
+    color: var(--primary-color);
+}
+
+p {
+  text-align: center;
+}

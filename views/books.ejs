@@ -1,0 +1,28 @@
+<%- include('./partials/head') %>
+<!--Voor Jou-->
+<section class="content-wrapper">
+
+    <!--for you details (hidden)-->
+    <div class="for-you-details-active">
+        <a href="/personal-page/:2">
+        <button class="details-close-buttons" id="forYouDetailsCloseButton">Sluiten</button>
+        </a>
+        <section class="details-item-container">
+            <% items.forEach(function(item) { %>
+                <a href="/detail/<%= item.id %>">
+                    <img class="bookCarouselImg" src='https://fdnd-agency.directus.app/assets/<%= item.afbeelding.id %>'
+                         alt="<%= item.title %>" width="200" height="300">
+                </a>
+            <% }) %>
+        </section>
+    </div>
+<%- include('./partials/foot') %>
+
+
+
+
+
+
+
+
+

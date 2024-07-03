@@ -1,0 +1,36 @@
+<%- include('partials/head')%>
+<%- include('partials/nav')%>
+
+<section class="person-list">
+    <h1>Geleende items van <span><%= data.name %></span></h1>
+    <a href="/user-all">Bekijk <span>persoonlijke pagina</span></a>
+
+    <ul class=>
+        <% 
+        if (data.linked_item && data.linked_item.length > 0) {
+            const sortedItems = data.linked_item.sort((a, b) => new Date(a.oba_item_id.datetime) - new Date(b.oba_item_id.datetime));
+            const today = new Date();
+
+            sortedItems.forEach(item => { 
+                const itemDate = new Date(item.oba_item_id.datetime);
+                const isBeforetoday = itemDate < today;
+                const classList = isBeforetoday ? 'danger' : '';
+        %>
+                <li class="<%= classList %>" id="item-list">
+                    <p><%= item.oba_item_id.title %></p>
+                    <p><%= item.oba_item_id.auteur %></p>
+                    <p><%= itemDate.toLocaleString('nl-NL', { month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' }) %><p>
+                </li>
+        <% 
+            });
+        } else {
+        %>
+            <li>
+                <p><%= data.name %> leent momenteel geen items!</p>
+            </li>
+        <% } %>
+    </ul>
+</section>
+
+
+<%- include('partials/foot')%>

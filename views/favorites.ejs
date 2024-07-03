@@ -1,0 +1,31 @@
+<%- include('./partials/head') %>
+    
+    
+        <ul class="favorites">
+            <div class="title">
+                <h1>Favorite</h1>
+                <a href="/">Terug naar <span>Home</span></a>
+            </div>
+            <% items.forEach(item => { %>
+            <li>
+                <a href="./detail/<%= item.id %> ">
+                    <picture>
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>?&format=avif" type="image/avif">
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>?&format=webp" type="image/webp" >   
+                        <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>" alt="<%= item.title %> Image" height="<%= item.afbeelding.height %>" width="<%= item.afbeelding.width %>">
+                    </picture>
+                </a>       
+                <!-- <button class="info-expand"></button> -->
+                <form action="/favorites/delete/<%= item.id %>" method="post" class="delete">
+                    <input type="hidden" name="itemDelete" value="<%= item.id %>">
+                    <button><span><i class='bx bx-x' ></i>Verwijder item</span></button>
+                    <svg class='circular' viewbox='25 25 50 50'>
+                        <circle class='path' cx='50' cy='50' r='20' fill='none' stroke-width='2' stroke-miterlimit='10' ></circle>
+                    </svg>
+                </form>
+            </li>
+            <% }); %>
+        </ul>
+      
+
+<%- include('./partials/foot') %>
