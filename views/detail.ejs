@@ -4,6 +4,7 @@
     <a id="goback" href="/"> ☇ <span>Terug naar home</span> </a>
     <section class="detail--text-image">
         <picture>
+            <source srcset="https://fdnd-agency.directus.app/assets/<%= items.afbeelding %>?&format=avif" type="image/avif">
             <source srcset="https://fdnd-agency.directus.app/assets/<%= items.afbeelding %>?&format=webp" type="image/webp">
             <img loading="lazy" src="https://fdnd-agency.directus.app/assets/<%= items.afbeelding %>" alt="">
         </picture>

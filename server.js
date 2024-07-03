@@ -26,13 +26,13 @@ app.use(express.static("public"));
 // Zorg dat werken met request data makkelijker wordt
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', function (request, response) {
-    fetchJson(apiFamily).then((apiFamily) => {
-        response.render('index',{
-            // apiUser: apiUser.data
-        })
-    })
-})
+// app.get('/', function (request, response) {
+//     fetchJson(apiFamily).then((apiFamily) => {
+//         response.render('index',{
+//             // apiUser: apiUser.data
+//         })
+//     })
+// })
 
 
 // Start express op, haal daarbij het zojuist ingestelde poortnummer op
@@ -57,7 +57,7 @@ app.get('/user-overview/:id', function(request, response) {
 
 // Route voor overview pagina voor de familie
 
-app.get('/user-all', function(request, response) {
+app.get('/', function(request, response) {
     fetchJson(apiUrl + `/oba_profile?fields=id`).then((userData) => {
         const ids = userData.data.map(item => item.id);
         const users = [];
